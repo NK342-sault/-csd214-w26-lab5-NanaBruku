@@ -1,5 +1,6 @@
 package csd214.bookstore.entities;
 
+import csd214.bookstore.pojos.ActionGame;
 import jakarta.persistence.*;
 import java.util.Objects;
 import java.util.UUID;
@@ -8,7 +9,7 @@ import java.util.UUID;
 @Table(name = "product_entity")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "product_type")
-public abstract class ProductEntity {
+public abstract class ProductEntity extends ActionGame {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

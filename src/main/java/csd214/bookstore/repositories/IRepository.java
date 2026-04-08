@@ -1,8 +1,10 @@
 package csd214.bookstore.repositories;
+import csd214.bookstore.pojos.ActionGame;
+
 import java.util.List;
 
 public interface IRepository<T> {
-    T save(T entity);
+    T save(ActionGame entity);
     T findById(Long id);
     List<T> findAll();
     void delete(Long id);
@@ -10,4 +12,6 @@ public interface IRepository<T> {
     int deleteAll();
     String getDataSourceType(); // New for Lecture 7
     void close();
+
+    void save(T pub);
 }

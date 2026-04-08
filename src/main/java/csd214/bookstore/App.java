@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 import csd214.bookstore.entities.*;
 import csd214.bookstore.pojos.*;
 import csd214.bookstore.repositories.IRepository;
+import csd214.bookstore.services.ActionGameService;
 import csd214.bookstore.services.BookstoreService;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class App {
     private BookstoreService service; // The Chef
 
     // INJECTION: App doesn't use the 'new' keyword for repos anymore
-    public App(IRepository<ProductEntity> repository) {
+    public App(IRepository<ProductEntity> repository, ActionGameService actionGameService, BookstoreService bookstoreService) {
         this.repository = repository;
         this.service = new BookstoreService(repository);
     }

@@ -1,5 +1,6 @@
 package csd214.bookstore.repositories;
 import csd214.bookstore.entities.ProductEntity;
+import csd214.bookstore.pojos.ActionGame;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public abstract class JpaRepository implements IRepository<ProductEntity> {
         this.name = displayName;
     }
 
-    @Override public ProductEntity save(ProductEntity entity) {
+    @Override public ProductEntity save(ActionGame entity) {
         EntityTransaction tx = em.getTransaction();
         try {
             tx.begin();

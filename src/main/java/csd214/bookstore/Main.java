@@ -1,6 +1,9 @@
 package csd214.bookstore;
 
 import csd214.bookstore.repositories.*;
+import csd214.bookstore.services.ActionGameService;
+import csd214.bookstore.services.BookstoreService;
+
 import java.util.Scanner;
 
 public class Main {
@@ -21,12 +24,20 @@ public class Main {
             case 3: repository = new MySqlRepository(); break;
             default: repository = new InMemoryRepository(); break;
         }
+        ActionGameService actionGameService = new ActionGameService(repository);
+        BookstoreService bookstoreService = new BookstoreService(repository);
 
         // INJECTION PHASE
-        App app = new App(repository);
+        App app = new App(repository, actionGameService, bookstoreService);
         try {
+            System.out.println("\n Booting with: " + repository.getDataSourceType());
             app.run();
-        } finally {
+        }
+        catch (Exception e){
+           System.err.println("\n Application Error: " + e.getMessage());
+        }
+        finally {
+            System.out.println("Shutting down and releasing resources...");
             repository.close();
         }
     }
